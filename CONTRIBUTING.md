@@ -32,6 +32,15 @@ Examples run under `LC_ALL=C` with `-Duser.language=en -Duser.country=US -Dstdou
 
 A lesson whose subject is the locale or the charset overrides this inside the program, in view of the reader — never by asking the runner for an exception.
 
+## Don't put the environment in an answer key
+
+Two things went into keys on the first day and both broke CI immediately, which is the system working:
+
+- **`java.version`** carries the patch level (`25.0.4.1` locally, `25.0.3` on the runner), so printing it locks the key to one JDK build. Print `Runtime.version().feature()` — the feature release is what a lesson ever means.
+- **`native.encoding`**'s raw string is platform-specific: `US-ASCII` on macOS, `ANSI_X3.4-1968` on Linux, one charset with two IANA names. Canonicalise with `Charset.forName(raw).name()`.
+
+The rule generalises: if a value comes from the host rather than from the idea being taught, either canonicalise it or don't print it.
+
 ## Examples that fail on purpose
 
 Some lessons are about code that does not compile. The runner records combined stdout and stderr and appends `[exit status: N]` when the exit code is non-zero, so "this is a compile error" is an answer key rather than a claim.

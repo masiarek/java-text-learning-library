@@ -17,7 +17,11 @@ Before Java 18, `Charset.defaultCharset()` was derived from the operating system
 ```text
 Charset.defaultCharset() = UTF-8
 file.encoding            = UTF-8
-native.encoding          = US-ASCII
+native.encoding          = US-ASCII   (canonical name)
+                           ^ the RAW property string is platform-specific:
+                             macOS says US-ASCII, Linux says ANSI_X3.4-1968.
+                             One charset, two IANA aliases. Canonicalise before
+                             you ever compare a charset name to a literal.
 stdout.encoding          = UTF-8
 Locale.getDefault()      = en_US
 
@@ -43,6 +47,12 @@ Before Java 18 those two could not disagree. Now they can, and each answers a di
 `stdout.encoding` follows the console, not `file.encoding`. In a terminal or a CI job with `LC_ALL=C`, `System.out` encodes to US-ASCII — and Java **transliterates** anything it cannot encode to a literal `?` rather than failing. Your data is fine; your output is not, and nothing says so.
 
 The first run of this library's own test suite recorded `za????` as the correct answer for `zażółć`. The fix is in [`tools/run_examples.py`](../../tools/run_examples.py): every example is launched with `-Dstdout.encoding=UTF-8 -Dstderr.encoding=UTF-8`.
+
+## A charset has more than one name
+
+The output above canonicalises `native.encoding` before printing it, and that is not tidiness. The raw property string is **platform-specific**: macOS reports `US-ASCII`, Linux reports `ANSI_X3.4-1968`. Those are the same charset — the second is its official IANA registry name and the first is an alias — but they are different strings, and CI caught this library asserting one of them as the answer.
+
+So: never compare a charset name to a string literal. `Charset.forName(name).name()` canonicalises, and `Charset.forName(a).equals(Charset.forName(b))` is the comparison you actually meant.
 
 ## Two flags worth knowing
 

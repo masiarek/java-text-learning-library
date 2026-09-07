@@ -1,6 +1,10 @@
 Charset.defaultCharset() = UTF-8
 file.encoding            = UTF-8
-native.encoding          = US-ASCII
+native.encoding          = US-ASCII   (canonical name)
+                           ^ the RAW property string is platform-specific:
+                             macOS says US-ASCII, Linux says ANSI_X3.4-1968.
+                             One charset, two IANA aliases. Canonicalise before
+                             you ever compare a charset name to a literal.
 stdout.encoding          = UTF-8
 Locale.getDefault()      = en_US
 

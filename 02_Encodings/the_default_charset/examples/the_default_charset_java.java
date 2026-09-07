@@ -9,7 +9,12 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Charset.defaultCharset() = " + Charset.defaultCharset());
         System.out.println("file.encoding            = " + System.getProperty("file.encoding"));
-        System.out.println("native.encoding          = " + System.getProperty("native.encoding"));
+        String raw = System.getProperty("native.encoding");
+        System.out.println("native.encoding          = " + Charset.forName(raw).name() + "   (canonical name)");
+        System.out.println("                           ^ the RAW property string is platform-specific:");
+        System.out.println("                             macOS says US-ASCII, Linux says ANSI_X3.4-1968.");
+        System.out.println("                             One charset, two IANA aliases. Canonicalise before");
+        System.out.println("                             you ever compare a charset name to a literal.");
         System.out.println("stdout.encoding          = " + System.getProperty("stdout.encoding"));
         System.out.println("Locale.getDefault()      = " + Locale.getDefault());
         System.out.println();

@@ -11,7 +11,9 @@ public class Main {
         System.out.println("class name : Main");
         System.out.println("run with   : java source_file_mode_java.java");
         System.out.println();
-        System.out.println("java.version = " + System.getProperty("java.version"));
+        // feature(), not java.version: the full string carries the patch level,
+        // which differs between JDK builds and would lock this answer key to one.
+        System.out.println("Java feature release = " + Runtime.version().feature());
         System.out.println();
         System.out.println("javac on this same file says:");
         System.out.println("  error: class Main is public, should be declared in a file named Main.java");
