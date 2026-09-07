@@ -1,0 +1,8 @@
+hello        -> olleh
+🎯 ok        -> ko 🎯
+café        -> ́efac
+👨‍👩‍👧     -> 👧‍👩‍👨
+
+substring(0, 1) of a 2-unit emoji:
+  result length = 1, isSurrogate = true
+  no exception was thrown — Java let you cut a character in half

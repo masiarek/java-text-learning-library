@@ -1,0 +1,12 @@
+default locale for this run : en_US
+
+Locale.ROOT            1,234.50
+en-US                  1,234.50
+pl-PL                  1 234,50
+de-DE                  1.234,50
+
+Now feed the Polish rendering back to a parser that expects a dot:
+  Double.parseDouble("1234,50") throws NumberFormatException
+
+Rule: Locale.ROOT for machines, a real locale for people.
+      Never the no-argument overload for either.

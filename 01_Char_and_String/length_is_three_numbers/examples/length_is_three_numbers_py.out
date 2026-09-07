@@ -1,0 +1,10 @@
+string            len()   codePoints
+------------------------------------
+hello                 5            5
+zażółć                6            6
+🎯                     1            1
+👨‍👩‍👧                 5            5
+café                 5            5
+
+len() IS the code point count — Python never shows you UTF-16 units.
+Grapheme clusters need a third-party library (regex, grapheme).

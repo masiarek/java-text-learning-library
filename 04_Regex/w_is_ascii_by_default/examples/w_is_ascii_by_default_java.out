@@ -1,0 +1,12 @@
+subject: zażółć gęślą 123
+
+\w+  default                   [za][g][l][123]
+\w+  UNICODE_CHARACTER_CLASS   [zażółć][gęślą][123]
+\p{L}+  (always Unicode)       [zażółć][gęślą]
+
+Note what the default did: it did not fail, it returned [za].
+A validator built on \w+ accepts half a Polish word and calls it clean.
+
+--- and the dot counts differently from length() ---
+"🎯".matches(".")   = true   <- regex works in CODE POINTS
+"🎯".matches("..")  = false  <- but String.length() is 2

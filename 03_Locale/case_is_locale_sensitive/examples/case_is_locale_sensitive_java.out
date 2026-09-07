@@ -1,0 +1,15 @@
+default locale for this run : en_US
+
+"TITLE".toLowerCase()        = title
+"TITLE".toLowerCase(TURKISH) = tıtle   <- dotless i
+"i".toUpperCase(TURKISH)     = İ    <- dotted capital I
+
+So this comparison is false in Turkey and true everywhere else:
+  "TITLE".toLowerCase().equals("title") = false
+  ...using Locale.ROOT instead          = true
+
+Case mapping can also change the LENGTH of a string:
+  "ß".toUpperCase() = SS   (1 char in, 2 out)
+
+Rule: comparing? use equalsIgnoreCase, or toLowerCase(Locale.ROOT).
+      showing it to a person? use their locale, deliberately.

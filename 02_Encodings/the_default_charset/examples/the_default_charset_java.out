@@ -1,0 +1,9 @@
+Charset.defaultCharset() = UTF-8
+file.encoding            = UTF-8
+native.encoding          = US-ASCII
+stdout.encoding          = UTF-8
+Locale.getDefault()      = en_US
+
+This run is under LC_ALL=C. file.encoding is UTF-8 anyway;
+native.encoding followed the locale. Since Java 18 those two
+can disagree, and before Java 18 they could not.

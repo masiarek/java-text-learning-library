@@ -1,0 +1,7 @@
+input bytes: c3 28
+
+bytes.decode('utf-8')                 -> raises UnicodeDecodeError
+bytes.decode('utf-8', 'replace')      -> '�('
+
+Python's default is STRICT and the lax mode is opt-in.
+Java's most obvious API is lax and the strict mode is opt-in.

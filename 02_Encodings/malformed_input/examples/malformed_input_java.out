@@ -1,0 +1,9 @@
+input bytes: C3 28  (a truncated UTF-8 sequence)
+
+new String(bytes, UTF_8)   -> no exception; length 2, first char U+FFFD
+                              U+FFFD is REPLACEMENT CHARACTER: data lost, quietly
+CharsetDecoder(REPORT)     -> throws MalformedInputException
+Files.readString(path)     -> throws MalformedInputException
+
+Two of the three refuse bad input. The String constructor —
+the shortest and most obvious one — is the one that hides it.

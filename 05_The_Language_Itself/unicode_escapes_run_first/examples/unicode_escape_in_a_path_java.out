@@ -1,0 +1,6 @@
+unicode_escape_in_a_path_java.java:6: error: illegal unicode escape
+        // the log file is at C:\users\adam\notes.txt
+                                  ^
+1 error
+error: compilation failed
+[exit status: 1]

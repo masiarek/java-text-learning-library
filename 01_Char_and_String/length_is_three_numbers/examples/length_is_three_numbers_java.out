@@ -1,0 +1,11 @@
+string         length()   codePoints  graphemes
+------------------------------------------------
+hello                 5            5          5
+zażółć                6            6          6
+🎯                    2            1          1
+👨‍👩‍👧              8            5          1
+café                 5            5          4
+
+length()    counts UTF-16 code units  — storage
+codePoints  counts Unicode characters — the table
+graphemes   counts what a reader calls a character — the screen

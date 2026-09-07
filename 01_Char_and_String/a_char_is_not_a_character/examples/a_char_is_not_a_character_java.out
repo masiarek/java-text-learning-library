@@ -1,0 +1,11 @@
+Character.MAX_VALUE  = U+FFFF
+highest code point   = U+10FFFF
+
+the string           = 🎯
+length()             = 2   <- UTF-16 code units, not characters
+charAt(0)            = U+D83C  isHighSurrogate=true
+charAt(1)            = U+DFAF  isLowSurrogate=true
+codePointAt(0)       = U+1F3AF
+fits in a char?      = false
+
+charAt(0) printed    = [?]  <- a lone surrogate: valid Java, invalid text

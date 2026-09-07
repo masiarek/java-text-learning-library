@@ -1,0 +1,12 @@
+--- trailing empty fields vanish ---
+"a,b,,".split(",")      = [a, b]   (2 fields, not 4)
+"a,b,,".split(",", -1)  = [a, b, , ]   (the limit argument keeps them)
+
+--- an empty string does NOT give an empty array ---
+"".split(",").length    = 1   (one element, the empty string)
+
+--- the argument is a regex ---
+"1.2.3".split(".")      = []   <- '.' matches everything
+"1.2.3".split("\\.")     = [1, 2, 3]
+Pattern.quote is the safe form for a literal separator:
+"1.2.3".split(quote(".")) = [1, 2, 3]

@@ -1,0 +1,16 @@
+composed   = café   length 4
+decomposed = café   length 5
+they print the same? look above — yes
+
+equals()          = false
+compareTo() == 0  = false
+hashCode equal    = false   <- so a HashMap keeps them as two different keys
+
+after Normalizer.normalize(.., NFC):
+  equals()        = true
+
+Collator (locale-aware comparison, ignores the difference):
+  compare() == 0  = true
+
+Rule: normalise at the boundary — when text enters your program —
+      not at the moment you compare it.

@@ -1,0 +1,10 @@
+file bytes      : EF BB BF 6E 61 6D 65   (BOM + "name")
+readString len  : 5   <- 4 would mean the BOM was stripped
+first code point: U+FEFF  (ZERO WIDTH NO-BREAK SPACE)
+read.equals("name")        = false
+read.startsWith("name")    = false
+
+and it is INVISIBLE when printed: [﻿name]
+
+The fix is one line, and there is no library call for it:
+  fixed.equals("name")     = true

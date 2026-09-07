@@ -1,0 +1,11 @@
+file name  : source_file_mode_java.java
+class name : Main
+run with   : java source_file_mode_java.java
+
+java.version = 25.0.4.1
+
+javac on this same file says:
+  error: class Main is public, should be declared in a file named Main.java
+
+Two tools, one file, opposite answers. The launcher relaxed the rule;
+the compiler never did.
