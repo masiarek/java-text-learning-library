@@ -17,7 +17,8 @@ Java's text model was designed in 1995, when Unicode fit in 16 bits. It hasn't s
 | 03 | [Locale](03_Locale/README.md) | the methods that change behaviour depending on where the JVM runs |
 | 04 | [Regex and splitting](04_Regex/README.md) | ASCII-only defaults, and `split`'s three surprises |
 | 05 | [The language itself](05_The_Language_Itself/README.md) | escapes that run before the compiler; running a file with no build tool |
-| 06 | [Resources](06_Resources/README.md) | the JEPs, the specs, and the sibling libraries |
+| 06 | [Concatenation and performance](06_Performance/README.md) | why the loop is quadratic, and what `+` really compiles to |
+| 07 | [Resources](07_Resources/README.md) | the JEPs, the specs, and the sibling libraries |
 
 ## Running the examples
 

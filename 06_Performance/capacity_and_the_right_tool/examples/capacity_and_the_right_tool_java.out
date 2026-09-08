@@ -1,0 +1,22 @@
+--- the buffer ---
+new StringBuilder().capacity()      = 16
+new StringBuilder("abc").capacity() = 19   (length + 16)
+new StringBuilder(1000).capacity()  = 1000  (the int overload is a CAPACITY, not content)
+
+growth, appending one char at a time:
+  length  17 -> capacity grew  16 to  34
+  length  35 -> capacity grew  34 to  70
+  length  71 -> capacity grew  70 to 142
+  length 143 -> capacity grew 142 to 286
+  length 287 -> capacity grew 286 to 574
+  the rule is (old * 2) + 2, and each growth copies the whole buffer
+
+--- the tools that are usually better ---
+String.join(", ", list)            = alpha, beta, gamma
+StringJoiner(sep, prefix, suffix)  = [alpha, beta, gamma]
+Collectors.joining(...)            = [alpha, beta, gamma]
+...and an empty StringJoiner       = (none)
+
+These say what they mean, handle the separator-between-not-after
+problem for you, and cannot be got wrong at the last element —
+which is the bug every hand-written StringBuilder join has had once.

@@ -18,6 +18,11 @@ Two kinds of example, told apart by extension
                            artifact to clean up or gitignore
     examples/<stem>.py     stdlib-only Python, run as `python3 -I <stem>.py`,
                            present only to put Java beside a language you know
+    examples/<stem>.sh     bash, for the lessons where the point is a tool rather
+                           than a program — `javap` on the bytecode, mostly. These
+                           MUST filter their output to the lines that carry the
+                           lesson: raw javap includes constant-pool indexes that
+                           differ between JDK builds and would flake in CI.
 
 Stems are unique repo-wide *across* extensions, because a Markdown block names a
 bare stem with no path and no extension. The convention is a language suffix:
@@ -81,8 +86,9 @@ JAVA_FLAGS = [
 RUNNERS = {
     ".java": lambda f: ["java", *JAVA_FLAGS, f.name],
     ".py": lambda f: [sys.executable, "-I", f.name],
+    ".sh": lambda f: ["bash", f.name],
 }
-FENCE_LANG = {".java": "java", ".py": "python"}
+FENCE_LANG = {".java": "java", ".py": "python", ".sh": "bash"}
 
 
 def discover() -> dict[str, Path]:

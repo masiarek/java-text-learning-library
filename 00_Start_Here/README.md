@@ -32,6 +32,7 @@ A summary of the whole library, so you know what you are walking into:
 - Since Java 18, the default charset is UTF-8 everywhere — the single biggest fix in the language's text history.
 - `Files.readString` is strict about malformed input, `Normalizer` and `Collator` and `BreakIterator` are all in the JDK, and the ICU-derived locale data is excellent.
 - Compact Strings (Java 9+) store Latin-1 text at one byte per character, so the UTF-16 model does not cost double the memory it used to.
+- Since Java 9 the `+` operator compiles to an `invokedynamic` that builds a tailored, often single-allocation concatenation at link time — so straight-line concatenation is *faster* than a hand-written `StringBuilder`. See [Concatenation and performance](../06_Performance/README.md).
 
 **Genuinely bad**
 
@@ -41,5 +42,6 @@ A summary of the whole library, so you know what you are walking into:
 - Six or more `String`/`Format` methods depend on an ambient locale, and the locale-taking overload is always the longer one.
 - `split` takes a regex and discards trailing empty fields.
 - `\u` escapes are processed before lexing, which is a wart with a security face.
+- Accumulating with `+=` in a loop is quadratic, and nothing in the language or the JIT will save you from it.
 
 **The pattern:** almost every flaw is a *default* chosen for compatibility, with a correct alternative sitting right next to it, one argument longer. Java rarely makes the right thing impossible. It makes the wrong thing shorter.
