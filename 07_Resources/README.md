@@ -1,4 +1,4 @@
-# 06 — Resources
+# 07 — Resources
 
 ## The primary sources
 

@@ -4,6 +4,17 @@ Right now there is one job: sidebar section labels. MkDocs derives them from
 folder names, so `01_Char_and_String` renders as "01 Char And String" — the
 underscores survive and the title-casing mangles `String` into a word it isn't.
 
+So every section is labelled with its own README's `# H1`, which already reads
+the way it should ("01 — `char` and `String`", "A `char` is not a character"),
+with the backticks dropped. The H1 is read from disk because MkDocs fills in a
+page's title only when it renders the page, long after this hook runs. A folder
+with no README H1 falls back to a label built from its name.
+
+Until 2026-09-12 that fallback was the only rule, and for a lesson it read the
+wrong folder: a lesson's README sits two levels down, and the hook took the
+first segment of its path, so all sixteen lessons carried their chapter's name —
+"01 — char and String", three times, under "01 — char and String".
+
 This is fixed at build time rather than by renaming the folders, because a
 folder name is a permanent part of every published URL and a reader may have
 bookmarked it.
@@ -46,6 +57,19 @@ def _label(folder: str) -> str:
     return f"{number} — " + " ".join(out)
 
 
+def _readme_h1(section) -> str:
+    """The `# H1` of a section's own README.md, backticks dropped ("" if none)."""
+    for child in section.children:
+        page_file = getattr(child, "file", None)
+        if page_file is None or page_file.src_path.rsplit("/", 1)[-1] != "README.md":
+            continue
+        with open(page_file.abs_src_path, encoding="utf-8") as fh:
+            for line in fh:
+                if line.startswith("# "):
+                    return line[2:].strip().replace("`", "")
+    return ""
+
+
 def on_nav(nav, config, files):
     for item in nav:
         _fix(item)
@@ -63,6 +87,6 @@ def _fix(item) -> None:
         if src:
             parts = src.split("/")
             if len(parts) > 1:
-                item.title = _label(parts[-2] if parts[-1] != "README.md" else parts[0])
+                item.title = _readme_h1(item) or _label(parts[-2])
         for child in item.children:
             _fix(child)
