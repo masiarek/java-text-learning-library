@@ -56,3 +56,4 @@ Static analysis catches this: SpotBugs, Error Prone and IntelliJ all have an ins
 
 - [Format follows the locale](../format_follows_the_locale/README.md)
 - [Normalization and equality](../normalization_and_equality/README.md)
+- [`fc` is how to compare without case](https://masiarek.github.io/perl-learning-library/02_Unicode_Text/fc_for_caseless_comparison/index.html) — the opposite problem in Perl: one case mapping for every language, so Turkish rules never apply

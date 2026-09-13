@@ -46,3 +46,4 @@ And for CSV specifically: do not use `split` at all. A real CSV field can contai
 ## See also
 
 - [`\w` is ASCII by default](../w_is_ascii_by_default/README.md)
+- [Perl: `split` has sharp edges](https://masiarek.github.io/perl-learning-library/03_Regex/split_has_sharp_edges/index.html) — the Perl original: the same dropped trailing fields and pattern argument, but no fields at all for an empty string

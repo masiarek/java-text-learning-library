@@ -67,3 +67,4 @@ For *comparing* rather than storing — sorting a list for a person to read, or 
 
 - [The BOM is not stripped](../../02_Encodings/the_bom_is_not_stripped/README.md) — the other invisible-character bug
 - [Length is three different numbers](../../01_Char_and_String/length_is_three_numbers/README.md)
+- [`length` counts code points](https://masiarek.github.io/perl-learning-library/02_Unicode_Text/length_counts_code_points/index.html) — the same two spellings of `café` in Perl, and `Unicode::Normalize`

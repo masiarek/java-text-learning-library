@@ -50,3 +50,4 @@ The last two lines of the output are worth their own note. Java's regex engine w
 
 - [`split` has sharp edges](../split_has_sharp_edges/README.md)
 - [Length is three different numbers](../../01_Char_and_String/length_is_three_numbers/README.md)
+- [The Unicode bug](https://masiarek.github.io/perl-learning-library/03_Regex/the_unicode_bug/index.html) — Perl's `\w` today: Unicode under `use v5.12` or later, storage-dependent without it, and `/a` as the opt-out

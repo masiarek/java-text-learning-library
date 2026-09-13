@@ -69,3 +69,4 @@ Same two policies, opposite defaults. Python's `bytes.decode()` is strict and `e
 
 - [The default charset](../the_default_charset/README.md)
 - [The BOM is not stripped](../the_bom_is_not_stripped/README.md)
+- [Decode at the edges](https://masiarek.github.io/perl-learning-library/02_Unicode_Text/decode_at_the_edges/index.html) — Perl's answers to the same bad byte: a silent `U+FFFD`, a warning, an exception, and a layer that checks nothing

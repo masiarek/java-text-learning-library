@@ -20,6 +20,7 @@ Same house style, same answer-key contract:
 - [**Python**](https://masiarek.github.io/python-learning-library/) — `str` vs `bytes`, the same boundary problems in a language that solved them differently.
 - [**Rust**](https://masiarek.github.io/rust-learning-library/) — `String` / `&str` / `char`, where `char` really is a code point and the compiler enforces it.
 - [**Ruby text**](https://masiarek.github.io/ruby-text-learning-library/) — one `String` type in which every string carries its own encoding label, so two strings in one program can disagree.
+- [**Perl**](https://masiarek.github.io/perl-learning-library/) — where `split`'s dropped trailing fields came from, and a text model in which a string does not record whether it holds bytes or characters.
 
 The three-way comparison is the point of having all of them: Java stores UTF-16 and calls a storage unit a `char`, Python stores code points and calls the count a `len`, Rust stores UTF-8 and refuses to index by character at all. Each choice buys something and costs something.
 
